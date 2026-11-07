@@ -18,6 +18,7 @@ always @(posedge clk or posedge reset) begin
     end
     else begin
         case(state)
+
             RED: begin
                 if(count == 4) begin
                     state <= GREEN;
@@ -46,6 +47,7 @@ always @(posedge clk or posedge reset) begin
                 state <= RED;
                 count <= 0;
             end
+
         endcase
     end
 end
