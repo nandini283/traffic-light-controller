@@ -1,3 +1,5 @@
+`timescale 1ns/1ps
+
 module traffic_light_tb;
 
 reg clk, reset;
@@ -11,11 +13,15 @@ traffic_light uut(
     .green(green)
 );
 
-initial clk = 0;
 always #5 clk = ~clk;
 
 initial begin
+    clk = 0;
     reset = 1;
+
+    $dumpfile("traffic_light.vcd");
+    $dumpvars(0, traffic_light_tb);
+
     #10 reset = 0;
 
     $monitor("Time=%0t RED=%b YELLOW=%b GREEN=%b",
